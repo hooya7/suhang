@@ -1,11 +1,12 @@
-#이전 수업 시간에 만들었던 이미지 분류 pkl 파일을 바탕으로 한 이미지 분류 모델을 Streamlit에 올리는 예제 코드
+#나의 Pkl파일을 올려서 나만의 모델 확인하기
+
 import streamlit as st
 from fastai.vision.all import *
 from PIL import Image
 import gdown
 
-# Google Drive 파일 ID
-file_id = '1NKIhMhUeRC0vPptHwT4it-LMYhamVDyi'
+# Google Drive 파일 ID (여기에 나의 pkl 파일의 id 집어넣어야 동작함!!!!!!!!!!!!!)
+file_id = '1dQ3-dMDqEAuJg-vVBca-wYoYKxMwosex'
 
 # Google Drive에서 파일 다운로드 함수
 @st.cache(allow_output_mutation=True)
@@ -25,7 +26,7 @@ st.success("모델이 성공적으로 로드되었습니다!")
 
 # 모델의 분류 라벨 출력
 labels = learner.dls.vocab
-#st.write(labels)
+st.write(labels)
 st.title(f"이미지 분류기 (Fastai) - 분류 라벨: {', '.join(labels)}")
 
 # 파일 업로드 컴포넌트 (jpg, png, jpeg, webp, tiff 지원)
