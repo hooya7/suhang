@@ -101,7 +101,7 @@ content_data = {
         ],
         'videos': [
             "https://www.youtube.com/watch?v=O2mVGs2KnBU",
-            "https://www.youtube.com/watch?v=vSFluYKuOkc",
+            "https://www.youtube.com/watch?v=X_gSuXiufmc",
             "https://www.youtube.com/watch?v=m1pMMSO4ppY"
         ],
         'texts': [
