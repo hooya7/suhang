@@ -1,60 +1,72 @@
-#기본적인 Streamlit 페이지 예제
-
-# streamlit_app.py
+#이전 수업 시간에 만들었던 이미지 분류 pkl 파일을 바탕으로 한 이미지 분류 모델을 Streamlit에 올리는 예제 코드
 import streamlit as st
-import pandas as pd
+from fastai.vision.all import *
+from PIL import Image
+import gdown
 
-# 1. 제목
-st.title("Streamlit 기본 예제 페이지")
+# Google Drive 파일 ID
+file_id = '1NKIhMhUeRC0vPptHwT4it-LMYhamVDyi'
 
-# 2. 부제목
-st.subheader("이 페이지는 다양한 Streamlit 기능을 보여줍니다.")
+# Google Drive에서 파일 다운로드 함수
+@st.cache(allow_output_mutation=True)
+def load_model_from_drive(file_id):
+    url = f'https://drive.google.com/uc?id={file_id}'
+    output = 'model.pkl'
+    gdown.download(url, output, quiet=False)
 
-# 3. 판다스 데이터프레임 기반 표 출력
-df = pd.DataFrame({
-    "Name": ["Alice", "Bob", "Charlie"],
-    "Age": [24, 30, 29],
-    "Country": ["Korea", "USA", "UK"]
-})
-st.write("데이터프레임 예제")
-st.dataframe(df)
+    # Fastai 모델 로드
+    learner = load_learner(output)
+    return learner
 
-# 4. HTML 활용 예제
-st.write("HTML 예제")
-st.markdown(
-    """
-    <div style="color: blue; font-size: 20px;">
-        HTML을 활용한 예시 텍스트입니다.
-    </div>
-    """,
-    unsafe_allow_html=True
-)
+# 모델 로드
+st.write("모델을 로드 중입니다. 잠시만 기다려주세요...")
+learner = load_model_from_drive(file_id)
+st.success("모델이 성공적으로 로드되었습니다!")
 
-# 5. HTML과 CSS 활용 예제
-st.write("HTML과 CSS 예제")
-st.markdown(
-    """
-    <style>
-    .styled-box {
-        padding: 10px;
-        margin: 5px;
-        background-color: lightgreen;
-        border-radius: 5px;
-        color: darkgreen;
-    }
-    </style>
-    <div class="styled-box">
-        HTML과 CSS를 함께 사용하여 스타일링한 박스입니다.
-    </div>
-    """,
-    unsafe_allow_html=True
-)
+# 모델의 분류 라벨 출력
+labels = learner.dls.vocab
+#st.write(labels)
+st.title(f"이미지 분류기 (Fastai) - 분류 라벨: {', '.join(labels)}")
 
-# 6. 이미지 표시
-st.write("이미지 표시 예제")
-st.image("https://www.streamlit.io/images/brand/streamlit-logo-primary-colormark-darktext.png", caption="Streamlit 로고")
+# 파일 업로드 컴포넌트 (jpg, png, jpeg, webp, tiff 지원)
+uploaded_file = st.file_uploader("이미지를 업로드하세요", type=["jpg", "png", "jpeg", "webp", "tiff"])
 
-# 7. 유튜브 링크 (썸네일 표시)
-st.write("유튜브 동영상 예제")
-st.video("https://www.youtube.com/watch?v=B2iAodr0fOo")
+if uploaded_file is not None:
+    # 업로드된 이미지 보여주기
+    image = Image.open(uploaded_file)
+    st.image(image, caption="업로드된 이미지", use_column_width=True)
+
+    # Fastai에서 예측을 위해 이미지를 처리
+    img = PILImage.create(uploaded_file)
+
+    # 예측 수행
+    prediction, _, probs = learner.predict(img)
+
+    # 결과 출력
+    st.write(f"예측된 클래스: {prediction}")
+
+
+    # 클래스별 확률을 HTML과 CSS로 시각화
+    st.markdown("<h3>클래스별 확률:</h3>", unsafe_allow_html=True)
+
+    # if prediction == labels[0]:
+    #     st.write("중냉 꿋굿")
+    # elif prediction == labels[1]:
+    #     st.write("짜장면은 굿")
+    # elif prediction == labels[2]:
+    #     st.write("짬뽕은 맵지만 맛있어!!")
+
+    for label, prob in zip(labels, probs):
+        # HTML 및 CSS로 확률을 시각화
+        st.markdown(f"""
+            <div style="background-color: #f0f0f0; border-radius: 5px; padding: 5px; margin: 5px 0;">
+                <strong style="color: #333;">{label}:</strong>
+                <div style="background-color: #d3d3d3; border-radius: 5px; width: 100%; padding: 2px;">
+                    <div style="background-color: #4CAF50; width: {prob*100}%; padding: 5px 0; border-radius: 5px; text-align: center; color: white;">
+                        {prob:.4f}
+                    </div>
+                </div>
+            </div>
+        """, unsafe_allow_html=True)
+
 
