@@ -78,53 +78,53 @@ st.markdown("""
 content_data = {
     labels[0]: {
         'images': [
-            "https://via.placeholder.com/300?text=Label1_Image1",
-            "https://via.placeholder.com/300?text=Label1_Image2",
-            "https://via.placeholder.com/300?text=Label1_Image3"
+            "https://i.ibb.co/Mf2GnPD/image.webp",
+            "https://i.ibb.co/6wCpj4n/image.jpg",
+            "https://i.ibb.co/TrQpxR4/image.jpg"
         ],
         'videos': [
-            "https://www.youtube.com/watch?v=3JZ_D3ELwOQ",
-            "https://www.youtube.com/watch?v=2Vv-BfVoq4g",
-            "https://www.youtube.com/watch?v=3JZ_D3ELwOQ"
+            "https://www.youtube.com/watch?v=YITvF0_6WXE",
+            "https://www.youtube.com/watch?v=H-AfbH5ujCc",
+            "https://www.youtube.com/watch?v=0xNNF3GkLqY"
         ],
         'texts': [
-            "Label 1 관련 첫 번째 텍스트 내용입니다.",
-            "Label 1 관련 두 번째 텍스트 내용입니다.",
-            "Label 1 관련 세 번째 텍스트 내용입니다."
+            "군용헬기 외관",
+            "군용헬기 내부",
+            "군용헬기 설계"
         ]
     },
     labels[1]: {
         'images': [
-            "https://via.placeholder.com/300?text=Label2_Image1",
-            "https://via.placeholder.com/300?text=Label2_Image2",
-            "https://via.placeholder.com/300?text=Label2_Image3"
+            "https://i.ibb.co/G98QR4L/image.jpg",
+            "https://i.ibb.co/nkcYXpd/image.jpg",
+            "https://i.ibb.co/QXT9RKj/image.jpg"
         ],
         'videos': [
-            "https://www.youtube.com/watch?v=2Vv-BfVoq4g",
-            "https://www.youtube.com/watch?v=3JZ_D3ELwOQ",
-            "https://www.youtube.com/watch?v=2Vv-BfVoq4g"
+            "https://www.youtube.com/watch?v=O2mVGs2KnBU",
+            "https://www.youtube.com/watch?v=vSFluYKuOkc",
+            "https://www.youtube.com/watch?v=m1pMMSO4ppY"
         ],
         'texts': [
-            "Label 2 관련 첫 번째 텍스트 내용입니다.",
-            "Label 2 관련 두 번째 텍스트 내용입니다.",
-            "Label 2 관련 세 번째 텍스트 내용입니다."
+            "민항여객기 외관",
+            "민항여객기 내부",
+            "민항여객기 설계"
         ]
     },
     labels[2]: {
         'images': [
-            "https://via.placeholder.com/300?text=Label3_Image1",
-            "https://via.placeholder.com/300?text=Label3_Image2",
-            "https://via.placeholder.com/300?text=Label3_Image3"
+            "https://i.ibb.co/xC29wg2/image.jpg",
+            "https://i.ibb.co/G5bVXnc/image.jpg",
+            "https://i.ibb.co/6BJWRbJ/wjsxnrp-tjfr-P.jpg"
         ],
         'videos': [
-            "https://www.youtube.com/watch?v=3JZ_D3ELwOQ",
-            "https://www.youtube.com/watch?v=2Vv-BfVoq4g",
-            "https://www.youtube.com/watch?v=3JZ_D3ELwOQ"
+            "https://www.youtube.com/watch?v=NpjSPuGOpe4",
+            "https://www.youtube.com/watch?v=xTY0UBFLnr0",
+            "https://www.youtube.com/watch?v=2diqLGcfxYo&t=78s"
         ],
         'texts': [
-            "Label 3 관련 첫 번째 텍스트 내용입니다.",
-            "Label 3 관련 두 번째 텍스트 내용입니다.",
-            "Label 3 관련 세 번째 텍스트 내용입니다."
+            "전투기 외관",
+            "전투기 내부",
+            "전투기 설계"
         ]
     }
 }
